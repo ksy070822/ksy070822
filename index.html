@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장애대응 마스터: 킹덤 오브 서비스</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DungGeunMo&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'DungGeunMo', 'Courier New', Courier, monospace;
+            background-color: #1a1a2e;
+            color: #ffffff;
+            margin: 0;
+            overflow: hidden;
+        }
+        .pixel-border {
+            border: 4px solid #fff;
+            box-shadow: 4px 4px 0px #000;
+        }
+        .gauge-container {
+            height: 20px;
+            background: #444;
+            border: 2px solid #000;
+        }
+        .gauge-fill {
+            height: 100%;
+            transition: width 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10px { transform: translate(-1px, -2px) rotate(-1deg); }
+            20px { transform: translate(-3px, 0px) rotate(1deg); }
+            30px { transform: translate(3px, 2px) rotate(0deg); }
+            40px { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+        }
+        .incident-active {
+            animation: shake 0.5s infinite;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0"
+  }
+}
+</script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
