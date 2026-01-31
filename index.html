@@ -37,7 +37,101 @@
             50% { transform: translate(-1px, 2px) rotate(-1deg); }
         }
         .incident-active {
-            animation: shake 0.5s infinite;
+            animation: shake 0.2s infinite;
+        }
+
+        /* Character Movement Effects */
+        @keyframes walk-bob {
+            0%, 100% { transform: translateY(0) scale(1, 1); }
+            50% { transform: translateY(-6px) scale(1.05, 0.9); }
+        }
+        .character-walking {
+            animation: walk-bob 0.25s infinite ease-in-out;
+        }
+
+        @keyframes idle-bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .character-idle {
+            animation: idle-bob 2s ease-in-out infinite;
+        }
+        
+        @keyframes shadow-pulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.4; }
+            50% { transform: translateX(-50%) scale(1.2); opacity: 0.2; }
+        }
+        .shadow-walking {
+            animation: shadow-pulse 0.25s infinite ease-in-out;
+        }
+
+        /* Dust effect */
+        @keyframes dust-puff {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        .dust {
+            position: absolute;
+            width: 8px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: dust-puff 0.4s ease-out forwards;
+            z-index: 30;
+        }
+
+        /* Dynamic Map Effects */
+        @keyframes cloud-move {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100vw); }
+        }
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            filter: blur(4px);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: cloud-move 60s linear infinite;
+            z-index: 10;
+        }
+
+        /* Map Ripple Effect via SVG Filter */
+        .map-ripple {
+            filter: url(#ripple-filter);
+        }
+
+        .scanline {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 100;
+            animation: scanline-move 4s linear infinite;
+        }
+        @keyframes scanline-move {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        /* Floating particles */
+        @keyframes mote-float {
+            0% { transform: translate(0, 0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translate(100px, -100px); opacity: 0; }
+        }
+        .mote {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: mote-float 10s linear infinite;
+            z-index: 15;
         }
     </style>
 <script type="importmap">
@@ -52,6 +146,16 @@
 </script>
 </head>
 <body>
+    <!-- Hidden SVG Filter for Water/Atmospheric Ripples -->
+    <svg style="position: absolute; width: 0; height: 0;" aria-hidden="true">
+        <filter id="ripple-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="1">
+                <animate attributeName="baseFrequency" dur="10s" values="0.015;0.02;0.015" repeatCount="indefinite" />
+            </feTurbulence>
+            <feDisplacementMap in="SourceGraphic" scale="5" />
+        </filter>
+    </svg>
+
     <div id="root"></div>
 </body>
 </html>

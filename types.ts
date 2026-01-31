@@ -1,9 +1,10 @@
 
 export enum RoleType {
-  COMMUNICATOR = '커뮤니케이터',
-  TECH_LEADER = '테크리더',
-  CONTROL_TOWER = '컨트롤타워',
-  REPORTER = '리포터'
+  COMMUNICATOR = 'COMMUNICATOR',
+  TECH_LEADER = 'TECH_LEADER',
+  CONTROL_TOWER = 'CONTROL_TOWER',
+  MAGE = 'MAGE',
+  REPORTER = 'REPORTER'
 }
 
 export interface Item {
